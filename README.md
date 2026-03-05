@@ -5,6 +5,16 @@
 - 一点 Unity C# 基础
 - 了解 AssetBundle 工作流程
 - 可以使用 Unity 6 的网络环境
+项目中包含如下内容，如有需要，你完全可以单独使用它们。
+### 代码部分
+代码全部位于 ```Assets/Scripts``` 目录，根据用途分在了三个目录中：
+- Core 目录：存放无法热更新的代码，包括加载器和日志可视化。
+- Editor 目录：编辑器插件目录，存放自动化工具。
+- HotUpdates 目录：热更新源代码目录，按程序集区分子目录。
+### 运行流程
+在场景加载完成后，工程会首先使用 Loader.cs 自动加载对应目录内的所有元数据，程序集和 AssetBundle。完成后，会向 Loader 所在的 gameObject 及其子附件发送 ```OnHotAwake``` 消息。
+此时演示用的 HotAwake.cs 执行调用热跟新的相关指令。
+演示用的热更新程序集 Kits 内的 Hello.cs 将被调用，并i企鹅场景内会实例化一个包含它的 prefab 并在日志输出信息。
 ## 快速开始
 - 打开工程，首先前往 ```HybridCLR``` 菜单，选择 ```Install``` 安装 HybridCLR 组件。
 - 使用同一菜单下的 ```Generate > All``` 进行初始化。
